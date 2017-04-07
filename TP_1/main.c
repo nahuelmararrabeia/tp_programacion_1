@@ -71,7 +71,7 @@ int main()
                     printf("No se puede calcular el factorial del nro ingresado\n");
                 }else
                 {
-                    result=getsFact(operandoA);
+                    result=factorial(operandoA);
                     printf("\n%.0f! = %.0f\n", operandoA,result);
                 }
                 system("pause");
@@ -96,7 +96,7 @@ int main()
                     printf("\nNo se puede calcular el factorial del numero ingresado\n\n\n");
                 }else
                 {
-                    result=getsFact(operandoA);
+                    result=factorial(operandoA);
                     printf("\n%.0f! = %.0f\n\n\n", operandoA,result);
                 }
 
