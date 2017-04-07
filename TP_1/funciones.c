@@ -77,7 +77,7 @@ float mult2nros(float nro1,float nro2)
  *
  */
 
-float getsFact(float numero)
+float factorial(float numero)
 {
     float i,r=1;
 
