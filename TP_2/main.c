@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "funciones.h"
-#define E 8
+#define E 20
 
 int main()
 {
