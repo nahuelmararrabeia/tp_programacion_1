@@ -1,0 +1,57 @@
+# depslib dependency file v1.0
+1493409186 source:f:\programacion1-master\tp2\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1493408878 f:\programacion1-master\tp2\funciones.h
+
+1493401006 source:f:\programacion1-master\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1493168044 source:d:\nahuelmararrabeia\programacion1-master\tp2\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1493168061 d:\nahuelmararrabeia\programacion1-master\tp2\funciones.h
+
+1493164913 source:d:\nahuelmararrabeia\programacion1-master\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1493402496 source:c:\users\nahuel mararrabeia\downloads\programacion1-master\tp2\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1493400418 c:\users\nahuel mararrabeia\downloads\programacion1-master\tp2\funciones.h
+
+1493401005 source:c:\users\nahuel mararrabeia\downloads\programacion1-master\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1493411960 source:e:\programacion1-master\tp2\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1493411950 e:\programacion1-master\tp2\funciones.h
+
+1493401006 source:e:\programacion1-master\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
