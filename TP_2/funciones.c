@@ -3,6 +3,13 @@
 #include <string.h>
 #include "funciones.h"
 
+/**
+*brief pide un valor al usuario y valida que un string sea solo de numeros
+*param1 Mensaje a imprimir
+* param2 variable que guarda string validado
+* return 1 si es solo numeros, sino 0
+**/
+    
 int stringNumerico(char mensaje[], char input[])
 {
     char aux[25];
@@ -15,13 +22,24 @@ int stringNumerico(char mensaje[], char input[])
     return 0;
 }//stringNumerico
 
+
+/**
+*brief Pide un numero al usuario y lo guarda
+*param1 Mensaje a imprimir
+* param2 variable que guarda string
+* return void
+**/
 void getString(char mensaje[], char input[])
 {
     printf("%s", mensaje);
     gets(input);
 }// getString
 
-
+/**
+*brief Valida que un string sea solo numeros
+* param1 variable que guarda string validado
+* return 1 si es solo numeros, sino 0
+**/
 int esNumero(char str[])
 {
     int i = 0;
@@ -34,6 +52,11 @@ int esNumero(char str[])
     return 1;
 }// esNumero
 
+/**
+*brief recibe un string y cuenta la cantidad de caracteres ingresados
+* param1 string a calcular la cantidad de caracteres 
+*return cantidad de caracteres de string
+**/
 int contadorChar(char str[])
  {
      int aux;
@@ -41,7 +64,12 @@ int contadorChar(char str[])
      return aux;
  }//contadorChar
 
-
+/**
+*brief pide y guarda dni, edad y nombre al usuario
+*param1 array de persona
+* param2 cantidad de posiciones del array
+* return void
+**/
 void agregarPersona(Epersona persona[], int tam)
 {
     printf("-----------AGREGAR PERSONA-----------\n");
@@ -101,7 +129,12 @@ void agregarPersona(Epersona persona[], int tam)
         printf("No hay espacio disponible");
 }//agregarPersona
 
-
+/**
+*brief pide dni al usuario para ubicar un registro y darlo de baja
+*param1 array de persona
+* param2 cantidad de posiciones del array
+* return void
+**/
 void borrarPersona(Epersona persona[], int tam)
 {
     printf("-----------BORRAR PERSONA-----------\n");
@@ -139,7 +172,12 @@ void borrarPersona(Epersona persona[], int tam)
         printf("No se encontro el DNI ingresado");
 }// borrarPersona
 
-
+/**
+*brief ordena los registros de personas ingresados por nombre de manera descendente
+*param1 array de persona
+* param2 cantidad de posiciones del array
+* return void
+**/
 void listaOrdenada(Epersona persona[], int tam)
 {
     printf("-----------LISTA POR NOMBRE-----------\n\n");
@@ -164,7 +202,12 @@ void listaOrdenada(Epersona persona[], int tam)
 }// listaOrdenada
 
 
-
+/**
+*brief inicializa los estados de todos los registros del array en 0
+*param1 array de persona
+* param2 cantidad de posiciones del array
+* return void
+**/
 void inicEstado(Epersona persona[],  int tam)
 {
     int i;
@@ -201,6 +244,12 @@ int unicCod(Epersona persona[], int tam)
     return 1;
 }
 
+/**
+*brief imprime un grafico de barras verticales por edades
+*param1 array de persona
+* param2 cantidad de posiciones del array
+* return void
+**/
 void graficoBarras(Epersona persona[], int tam)
 {
     int i,auxInt, menor18=0,entre18y35=0,mayor35=0,mayor,flag=0;
@@ -226,18 +275,18 @@ void graficoBarras(Epersona persona[], int tam)
     for(i==mayor;i>0;i--)
     {
         if(i<=menor18)
-            printf(" %c", 219);
+            printf(" *");
         if(i<=entre18y35)
         {
-            printf(" \t %c", 219);
+            printf(" \t *");
             flag=1;
         }
         if(i<=mayor35)
         {
             if(flag==0)
-                printf(" \t\t%c", 219);
+                printf(" \t\t*");
             if(flag==1)
-                printf(" \t%c", 219);
+                printf(" \t*");
 
         }
         printf("\n");
@@ -245,6 +294,12 @@ void graficoBarras(Epersona persona[], int tam)
     printf("\n-18\t18a35\t+35");
 }
 
+/**
+*brief valida que el dni ingresado no este ya registrado con anterioridad
+*param1 array de persona
+* param2 cantidad de posiciones del array
+* return 0 si se repite el dni, 1 si es la primera vex que se ingresa
+**/
 int unicoDni(Epersona persona[], int index, int tam)
 {
     int i,j;
