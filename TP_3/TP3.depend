@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1495992365 source:c:\users\user\desktop\nahuel\tp3\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1495991895 c:\users\user\desktop\nahuel\tp3\funciones.h
+
+1495993039 source:c:\users\user\desktop\nahuel\tp3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1496184665 source:d:\nahuelm\programacion1-master\tp3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1496184102 d:\nahuelm\programacion1-master\tp3\funciones.h
+
+1496186296 source:d:\nahuelm\programacion1-master\tp3\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1496425801 source:c:\users\nahuel mararrabeia\downloads\programacion1-master\tp3\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1496421470 c:\users\nahuel mararrabeia\downloads\programacion1-master\tp3\funciones.h
+
+1496422110 source:c:\users\nahuel mararrabeia\downloads\programacion1-master\tp3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
