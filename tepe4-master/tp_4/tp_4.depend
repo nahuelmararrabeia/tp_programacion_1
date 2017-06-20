@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1496790803 source:d:\nahuel_m\tp_4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+
+1496790399 d:\nahuel_m\tp_4\arraylist.h
+
+1497912662 source:d:\nahuel_m\tepe4-master\tepe4-master\tp_4\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+
+1497912533 d:\nahuel_m\tepe4-master\tepe4-master\tp_4\arraylist.h
+
+1497919188 source:d:\nahuel_m\tepe4-master\tepe4-master\tp_4\empleados.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"empleados.h"
+
+1497914297 d:\nahuel_m\tepe4-master\tepe4-master\tp_4\empleados.h
+
+1497915440 source:d:\nahuel_m\tepe4-master\tepe4-master\tp_4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"empleados.h"
+
