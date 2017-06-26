@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "ArrayList.h"
 #define AL_INITIAL_VALUE  10
 
@@ -50,9 +51,10 @@ ArrayList* al_newArrayList(void) // (1) TESTEADO
     return returnAux;
 }
 
-int al_add(ArrayList* pList,void* pElement) //(2) TESTEADO!
+int al_add(ArrayList* pList,void* pElement)
 {
     void* pAux;
+    pAux=(void*)malloc(sizeof(void));
     if(pList!=NULL&&pElement!=NULL)
     {
         pList->pElements[pList->size]=pElement;
@@ -60,7 +62,7 @@ int al_add(ArrayList* pList,void* pElement) //(2) TESTEADO!
     }else{
         return -1;
     }
-    if(pList->size >=pList->reservedSize)
+    if(pList->size>=pList->reservedSize)
     {
 
         pList->reservedSize+=10;
@@ -258,6 +260,7 @@ int al_isEmpty(ArrayList* pList) // (13)  TESTEADO!
 void* al_get(ArrayList* pList , int index) // (5) TESTEADO!
 {
     void* auxPointer;
+    auxPointer=(void*)malloc(sizeof(void));
 
     if(pList==NULL)
     {
@@ -280,6 +283,7 @@ void* al_get(ArrayList* pList , int index) // (5) TESTEADO!
 void* al_pop(ArrayList* pList , int index) // (14)
 {
     void* auxPointer;
+    ArrayList auxAl;
 
     if(pList==NULL)
     {
@@ -293,9 +297,7 @@ void* al_pop(ArrayList* pList , int index) // (14)
         }else{
 
             auxPointer=pList->pElements[index];
-            pList->pElements[index]=NULL;
-            pList->size--;
-
+            al_remove(pList, index);
         }
     }
     return auxPointer;

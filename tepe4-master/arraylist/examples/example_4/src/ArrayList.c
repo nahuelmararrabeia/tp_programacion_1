@@ -70,6 +70,7 @@ ArrayList* al_newArrayList(void)
 int al_add(ArrayList* pList,void* pElement)
 {
     void* pAux;
+    pAux=(void*)malloc(sizeof(void));
     if(pList!=NULL&&pElement!=NULL)
     {
         pList->pElements[pList->size]=pElement;
@@ -137,9 +138,27 @@ int al_len(ArrayList* pList)
  *
  */
 
-void* al_get(ArrayList* pList , int index) // (5)
+void* al_get(ArrayList* pList , int index) // (5) TESTEADO!
 {
-    return -1;
+    void* auxPointer;
+    auxPointer=(void*)malloc(sizeof(void));
+
+    if(pList==NULL)
+    {
+        auxPointer= NULL;
+
+    }else{
+        if(index<0 || index >= pList->size)
+        {
+            auxPointer= NULL;
+
+        }else{
+
+            auxPointer=pList->pElements[index];
+
+        }
+    }
+    return auxPointer;
 }
 
 
@@ -273,9 +292,10 @@ ArrayList* al_clone(ArrayList* this)
  */
 int al_push(ArrayList* pList, int index, void* pElement) // (11)
 {
-    int retorno,j, i;
-    void** auxPointer;
-    auxPointer=(void**)malloc(sizeof(void*)*pList->size);
+    return -1;
+    /*int retorno,j, i;
+    void* auxPointer;
+    //auxPointer=(void**)malloc(sizeof(void*)*pList->size);
     if(pList==NULL || pElement==NULL)
     {
         retorno= -1;
@@ -284,7 +304,6 @@ int al_push(ArrayList* pList, int index, void* pElement) // (11)
         if(index<0 || index >= pList->size)
         {
            retorno= -1;
-
         }else{
             for(i=0; i<pList->size; i++)
             {
@@ -303,7 +322,7 @@ int al_push(ArrayList* pList, int index, void* pElement) // (11)
     }
         free(auxPointer);
 
-    return retorno;
+    return retorno;*/
 }
 
 
@@ -387,9 +406,7 @@ void* al_pop(ArrayList* pList , int index) // (14)
         }else{
 
             auxPointer=pList->pElements[index];
-            free(pList->pElements[index]);
-            pList->size--;
-            pList->reservedSize--;
+            al_remove(pList, index);
         }
     }
     return auxPointer;

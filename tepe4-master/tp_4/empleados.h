@@ -1,9 +1,9 @@
 typedef struct{
-
+    //int id;
     char nombre[50];
-    char apellido[50];
-    char edad[3];
-    char dni[10];
+    char mail[50];
 
-}Eempleado;
+}Edestinatarios;
+
+int cargar_destinatarios(ArrayList* lista_destinatarios);
 

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include "ArrayList.h"
 #include "empleados.h"
@@ -57,195 +58,8 @@ int contadorChar(char str[])
      return aux;
  }//contadorChar
 
-/**
-*brief pide y guarda dni, edad y nombre al usuario
-*param1 array de persona
-* param2 cantidad de posiciones del array
-* return void
-**/
-void agregarEmpleado(ArrayList* lista)
-{
-    printf("-----------AGREGAR EMPLEADO-----------\n");
-    FILE *aRch;
-    Eempleado* empleado;
-    empleado=(Eempleado *)malloc(sizeof(Eempleado));
-    if((aRch=fopen("empleados.dat","rb+"))==NULL)
-        {
-             if((aRch=fopen("empleados.dat","wb+"))==NULL)
-             {
-                 printf("\nEl archivo no puede ser abierto");
-                 return 0;
-             }
-        }
-    if(fseek(aRch, 0L, SEEK_END)==0)
-    {
-            printf("\nNombre: ");
-            fflush(stdin);
-            gets(empleado->nombre);
-            while(stringLetras(empleado->nombre)==0)
-            {
-                printf("\nEl nombre no acepta numeros ");
-                printf("\nNombre: ");
-                fflush(stdin);
-                gets(empleado->nombre);
-            }
-
-             printf("\nApellido: ");
-            fflush(stdin);
-            gets(empleado->apellido);
-            while(stringLetras(empleado->apellido)==0)
-            {
-                printf("\nEl apellido no acepta numeros ");
-                printf("\nApellido: ");
-                fflush(stdin);
-                gets(empleado->apellido);
-            }
-
-            fflush(stdin);
-            while(stringNumerico("\nEdad: ", empleado->edad)==0)
-            {
-                printf("\nEdad debe ser numerico! ");
-            }
 
 
-            fflush(stdin);
-            while(stringNumerico("\nDNI: ", empleado->dni)==0)
-            {
-            printf("\nDNI debe ser numerico ");
-            }
-
-            while(contadorChar(empleado->dni)<7 || contadorChar(empleado->dni)>8)
-                   {
-                       printf("\nCantidad de digitos invalida");
-                        stringNumerico("\nDNI: ", empleado->dni);
-                   }
-
-            /*while(unicoDni(empleado,i,tam)==0)
-            {
-                printf("\nEl DNI ingresado ya existe en otro registro");
-                stringNumerico("\nDNI: ", persona[i].dni);
-            }*/
-
-            //persona[i].estado=1;
-            fflush(stdin);
-            al_add(lista, empleado);
-            fwrite (empleado, sizeof(Eempleado) , 1, aRch);
-            fclose(aRch);
-            system("cls");
-            printf("\n----------PELICULA AGREGADA EXITOSAMENTE!--------");
-            //break;
-
-    }else{
-        printf("Error al cargar nuevo registro");
-        fclose(aRch);
-        system("pause");
-        return 0;
-    }
-}
-
-/**
-*brief pide dni al usuario para ubicar un registro y darlo de baja
-*param1 array de persona
-* param2 cantidad de posiciones del array
-* return void
-**/
- int borrarEmpleado(ArrayList* lista)
-{
-    printf("-----------BORRAR EMPLEADO-----------\n");
-    FILE* aRch;
-    Eempleado* empleado;
-    char auxString[10];
-    int i,flagEncontro=0, tam;
-    char opcion, auxDNI[10];
-    empleado=(Eempleado*)malloc(sizeof(Eempleado)*lista->size);
-    lista->pElements=empleado;
-
-    if((aRch=fopen("empleados.dat","rb+"))==NULL)
-        {
-             if((aRch=fopen("empleados.dat","wb+"))==NULL)
-             {
-                 printf("\nEl archivo no puede ser abierto");
-                 return -1;
-             }
-        }
-    rewind(aRch);
-    printf("Ingrese el DNI de la persona a borrar: ");
-    fflush(stdin);
-    gets(auxString);
-    for(i=0; i<lista->size ;i++)
-    {
-        fread(lista->pElements[i], sizeof(Eempleado), 1, aRch);
-    }
-
-
-    scanf(" %c", &auxDNI);
-    for(i=0; i<lista->size; i++)
-    {
-        if(auxDNI == *(lista->pElements[i])->dni)
-        {
-            if(al_remove(lista, i)==0)
-            {
-                printf("Registro borrado");
-            }else{
-                printf("Error al eliminar el registro");
-            }
-    }
-    if(flagEncontro==0)
-        printf("No se encontro el DNI ingresado");
-
-    rewind(aRch);
-    fflush(stdin);
-    fwrite(lista, sizeof(lista), 1, aRch);
-
-    fclose(aRch);
-    }
-     return 0;
-}// borrarPersona
-
-/**
-*brief ordena los registros de personas ingresados por nombre de manera descendente
-*param1 array de persona
-* param2 cantidad de posiciones del array
-* return void
-**/
-/* void listaOrdenada(Epersona persona[], int tam)
-{
-    printf("-----------LISTA POR NOMBRE-----------\n\n");
-    int i,j;
-    Epersona auxStruct;
-    printf("DNI\t\tNOMBRE\tEDAD\n");
-    for(i=0; i<tam-1; i++)
-    {
-        for(j=i+1; j<tam; j++)
-        {
-            if(strcmp(persona[i].nombre, persona[j].nombre)<0)
-            {
-                auxStruct = persona[i];
-                persona[i] = persona[j];
-                persona[j] = auxStruct;
-            }
-        }
-            if(persona[i].estado==1)
-                printf("%s\t%s\t%s\n", persona[i].dni,persona[i].nombre,persona[i].edad);
-
-    }
-}// listaOrdenada
-*/
-
-/**
-*brief inicializa los estados de todos los registros del array en 0
-*param1 array de persona
-* param2 cantidad de posiciones del array
-* return void
-**/
-/*void inicEstado(Epersona persona[],  int tam)
-{
-    int i;
-    for(i=0; i<tam; i++)
-    {
-        persona[i].estado=0;
-    }
-}// inicEstado */
 
 
  int stringLetras(char str[])
@@ -264,10 +78,10 @@ int cantidadRegistros()
 {
     int tam=0;
     FILE* aRch;
-    Eempleado* empleado;
-    if((aRch=fopen("empleados.dat","rb+"))==NULL)
+    void* empleado;
+    if((aRch=fopen("destinatariios.csv","r+"))==NULL)
         {
-             if((aRch=fopen("empleados.dat","wb+"))==NULL)
+             if((aRch=fopen("destinatariios.csv","w+"))==NULL)
              {
                  printf("\nEl archivo no puede ser abierto");
                  return -1;
@@ -275,7 +89,7 @@ int cantidadRegistros()
         }
     while(!feof(aRch))
     {
-        fread(empleado, sizeof(Eempleado),1,aRch);
+        fread(empleado, sizeof(void),1,aRch);
         if(feof(aRch))
             break;
         tam++;
@@ -284,5 +98,90 @@ int cantidadRegistros()
     fclose(aRch);
     return tam;
 }
+
+int cargar_destinatarios(ArrayList* lista_destinatarios)
+{
+    FILE* aRch, *aRch2;
+    Edestinatarios* destinatarios;
+    Edestinatarios* destinatario;
+    int i, index=0;
+    long int pos;
+    char nombre[50],mail[50],cadena[50];
+
+    destinatarios=(Edestinatarios*)malloc(sizeof(Edestinatarios));
+    destinatario=(Edestinatarios*)malloc(sizeof(Edestinatarios));
+    if((aRch=fopen("C:\\Users\\user\\Desktop\\Nahuel\\tp_programacion_1-master\\tepe4-master\\tp_4\\destinatarios.csv","r+"))==NULL)
+        {
+             if((aRch=fopen("C:\\Users\\user\\Desktop\\Nahuel\\tp_programacion_1-master\\tepe4-master\\tp_4\\destinatarios.csv","w+"))==NULL)
+             {
+                 printf("\nEl archivo no puede ser abierto");
+                 return 0;
+             }
+        }
+    rewind(aRch);
+                if((aRch2=fopen("lola.txt","r+"))==NULL)
+            {
+                 if((aRch=fopen("lola.txt","w+"))==NULL)
+                 {
+                     printf("\nEl archivo no puede ser abierto");
+                     return 0;
+                 }
+            }
+    while(!feof(aRch))
+    {
+
+        i=0;
+        fgets(cadena, 50, aRch);
+        while(cadena[i]!=44){
+            i++;
+        }
+        cadena[i]='\0';
+        strcpy(nombre, cadena);
+        //printf(" %s", nombre);
+        //fseek(aRch,-(50-i), SEEK_SET);
+        fgets(cadena,50,aRch);
+        i=0;
+        while(cadena[i]!=10){
+            i++;
+        }
+        cadena[i]='\0';
+        strcpy(mail, cadena);
+        //printf(" %s\n", mail);
+        //fseek(aRch,-(50-i), SEEK_CUR);
+        destinatarios=(Edestinatarios*)realloc(destinatarios, sizeof(Edestinatarios)*index);
+        strcpy(*(destinatarios+index)->nombre, nombre);
+        strcpy(*(destinatarios+index)->mail, mail);
+        lista_destinatarios->add(destinatarios+index);
+        index++;
+
+
+    }
+    //printf("%d\n", lista_destinatarios->size);
+
+    /*for(i=0;i<lista_destinatarios->size;i++)
+    {
+        destinatarios=(Edestinatarios*)al_get(lista_destinatarios, i);
+        fprintf(" %s", destinatario->nombre);
+        printf("%d\n", lista_destinatarios->size);
+        //fprintf(aRch2," %s\t %s\n\n", destinatario->nombre, destinatario->mail);
+    }*/
+    fwrite(lista_destinatarios, sizeof(ArrayList),1,aRch2);
+
+
+    fclose(aRch);
+    fclose(aRch2);
+    return 1;
+}
+
+/*void imprimir_al(ArrayList* lista_destinatarios)
+{
+    int i;
+    Edestinatarios* destinatarios;
+    destinatarios=(Edestinatarios*)malloc(Edestinatarios);
+    for(i=0;i<lista_destinatarios;i++)
+    {
+
+    }
+}*/
 
 

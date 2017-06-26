@@ -2,21 +2,22 @@
 #include <stdlib.h>
 #include "ArrayList.h"
 #include "empleados.h"
+#include <string.h>
 
 int main()
 {
     char seguir='s';
     char opcion;
-    ArrayList* lista;
-    lista = al_newArrayList();
+    ArrayList* lista_destinatarios;
+    lista_destinatarios = al_newArrayList();
 
     while(seguir=='s')
     {
 
-        printf("\n\n1- Agregar empleado\n");
-        printf("2- Borrar empleado\n");
-        printf("2- Modificar empleado\n");
-        printf("4- Imprimir lista ordenada por  nombre\n");
+        printf("\n\n1- Cargar destinatarios\n");
+        printf("2- Cargar lista negra\n");
+        printf("3- Depurar\n");
+        printf("4- Listar\n");
         printf("5- Salir\n");
         printf("\nOPCION: ");
         fflush(stdin);
@@ -32,10 +33,10 @@ int main()
         switch(opcion)
         {
             case '1':
-                agregarEmpleado(lista);
+                cargar_destinatarios(lista_destinatarios);
                 break;
             case '2':
-                borrarEmpleado(lista);
+                //borrarEmpleado(lista);
                 break;
             case '3':
 
