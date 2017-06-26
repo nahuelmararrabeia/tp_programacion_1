@@ -148,7 +148,7 @@ void* al_get(ArrayList* pList , int index) // (5) TESTEADO!
         auxPointer= NULL;
 
     }else{
-        if(index<0 || index >= pList->size)
+        if(index<0 || index > pList->size)
         {
             auxPointer= NULL;
 
@@ -160,6 +160,7 @@ void* al_get(ArrayList* pList , int index) // (5) TESTEADO!
     }
     return auxPointer;
 }
+
 
 
 /** \brief  Find if pList contains at least one element pElement

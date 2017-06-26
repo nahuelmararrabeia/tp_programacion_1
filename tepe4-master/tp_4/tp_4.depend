@@ -51,3 +51,27 @@
 	"empleados.h"
 	<string.h>
 
+1498496138 source:f:\tp_programacion_1-master\tepe4-master\tp_4\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1498432380 f:\tp_programacion_1-master\tepe4-master\tp_4\arraylist.h
+
+1498494910 source:f:\tp_programacion_1-master\tepe4-master\tp_4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"empleados.h"
+	<string.h>
+
+1498432380 f:\tp_programacion_1-master\tepe4-master\tp_4\empleados.h
+
+1498496248 source:f:\tp_programacion_1-master\tepe4-master\tp_4\empleados.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"empleados.h"
+

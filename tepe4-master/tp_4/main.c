@@ -49,6 +49,6 @@ int main()
                 break;
         }
     }
-
+    free(lista_destinatarios);
     return 0;
 }

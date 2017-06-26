@@ -108,17 +108,18 @@ int cargar_destinatarios(ArrayList* lista_destinatarios)
     long int pos;
     char nombre[50],mail[50],cadena[50];
 
-    destinatarios=(Edestinatarios*)malloc(sizeof(Edestinatarios));
+
     destinatario=(Edestinatarios*)malloc(sizeof(Edestinatarios));
-    if((aRch=fopen("C:\\Users\\user\\Desktop\\Nahuel\\tp_programacion_1-master\\tepe4-master\\tp_4\\destinatarios.csv","r+"))==NULL)
+    destinatarios=(Edestinatarios*)malloc(sizeof(Edestinatarios));
+    if((aRch=fopen("F:\\tp_programacion_1-master\\tepe4-master\\tp_4\\destinatarios.csv","r+"))==NULL)
         {
-             if((aRch=fopen("C:\\Users\\user\\Desktop\\Nahuel\\tp_programacion_1-master\\tepe4-master\\tp_4\\destinatarios.csv","w+"))==NULL)
+             if((aRch=fopen("F:\\tp_programacion_1-master\\tepe4-master\\tp_4\\destinatarios.csv","w+"))==NULL)
              {
                  printf("\nEl archivo no puede ser abierto");
                  return 0;
              }
         }
-    rewind(aRch);
+
                 if((aRch2=fopen("lola.txt","r+"))==NULL)
             {
                  if((aRch=fopen("lola.txt","w+"))==NULL)
@@ -127,45 +128,52 @@ int cargar_destinatarios(ArrayList* lista_destinatarios)
                      return 0;
                  }
             }
+    rewind(aRch);
     while(!feof(aRch))
     {
 
         i=0;
-        fgets(cadena, 50, aRch);
-        while(cadena[i]!=44){
+        do{
+            nombre[i]=fgetc(aRch);
             i++;
-        }
-        cadena[i]='\0';
-        strcpy(nombre, cadena);
-        //printf(" %s", nombre);
-        //fseek(aRch,-(50-i), SEEK_SET);
-        fgets(cadena,50,aRch);
-        i=0;
-        while(cadena[i]!=10){
-            i++;
-        }
-        cadena[i]='\0';
-        strcpy(mail, cadena);
-        //printf(" %s\n", mail);
-        //fseek(aRch,-(50-i), SEEK_CUR);
-        destinatarios=(Edestinatarios*)realloc(destinatarios, sizeof(Edestinatarios)*index);
-        strcpy(*(destinatarios+index)->nombre, nombre);
-        strcpy(*(destinatarios+index)->mail, mail);
-        lista_destinatarios->add(destinatarios+index);
-        index++;
+        }while(nombre[i-1]!=44);
+        nombre[i-1]='\0';
+        //printf(" %s...", nombre);
 
+        i=0;
+        do{
+            mail[i]=fgetc(aRch);
+            i++;
+        }while(mail[i-1]!='\n');
+        mail[i-1]='\0';
+        //printf(" %s\n", mail);
+        destinatarios=(Edestinatarios*)realloc(destinatarios, sizeof(Edestinatarios)*(index+1));
+
+
+        strcpy(destinatarios[index].nombre, nombre);
+        strcpy(destinatarios[index].mail, mail);
+        lista_destinatarios->add(lista_destinatarios, destinatarios+index);
+        index++;
+        fgetc(aRch);
+        if(feof(aRch))
+            break;
 
     }
-    //printf("%d\n", lista_destinatarios->size);
+    destinatario=(Edestinatarios*)al_get(lista_destinatarios, 4);
+    printf(" %s\n", destinatario->nombre);
+    printf(" %s\n", destinatario->mail);
 
     /*for(i=0;i<lista_destinatarios->size;i++)
     {
-        destinatarios=(Edestinatarios*)al_get(lista_destinatarios, i);
-        fprintf(" %s", destinatario->nombre);
+        destinatario=(Edestinatarios*)al_get(lista_destinatarios, i);
+        if(destinatario==NULL)
+            printf("null");
+        fflush(stdin);
+        fprintf(aRch2," %s\n", destinatario->nombre);
         printf("%d\n", lista_destinatarios->size);
         //fprintf(aRch2," %s\t %s\n\n", destinatario->nombre, destinatario->mail);
     }*/
-    fwrite(lista_destinatarios, sizeof(ArrayList),1,aRch2);
+
 
 
     fclose(aRch);

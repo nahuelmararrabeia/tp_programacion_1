@@ -53,8 +53,8 @@ ArrayList* al_newArrayList(void) // (1) TESTEADO
 
 int al_add(ArrayList* pList,void* pElement)
 {
-    void* pAux;
-    pAux=(void*)malloc(sizeof(void));
+    void** pAux;
+    pAux=(void**)malloc(sizeof(void*));
     if(pList!=NULL&&pElement!=NULL)
     {
         pList->pElements[pList->size]=pElement;
@@ -66,14 +66,14 @@ int al_add(ArrayList* pList,void* pElement)
     {
 
         pList->reservedSize+=10;
-        pAux = (void*)realloc(pAux,sizeof(void*)*pList->reservedSize);
-        if(pAux==NULL)
+        pList->pElements = (void**)realloc(pList->pElements,sizeof(void*)*pList->reservedSize);
+        /*if(pAux==NULL)
         {
             printf("No hay espacio en memoria");
             return -1;
         }else{
             pList->pElements=pAux;
-        }
+        }*/
     }
     return 0;
 }
@@ -267,13 +267,13 @@ void* al_get(ArrayList* pList , int index) // (5) TESTEADO!
         auxPointer= NULL;
 
     }else{
-        if(index<0 || index >= pList->size)
+        if(index<0 || index > pList->size)
         {
             auxPointer= NULL;
 
         }else{
 
-            auxPointer=pList->pElements[index];
+            auxPointer = pList->pElements[index];
 
         }
     }
